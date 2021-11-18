@@ -4,8 +4,9 @@ module.exports={
     index: (req,res)=>{
         userModel.find({})
         .then((data)=>{
-            res.end();
-            console.log(data)})
+            res.locals.users = data;
+            res.render('users/index');
+        })
         .catch((err)=>console.log(`Error Occurd:${err}`));
     },
     create: (req,res)=>{
@@ -23,7 +24,7 @@ module.exports={
         }).save();
     },
     delete: (req,res)=>{
-        userModel.deleteOne({userName:req.params.userName})
+        userModel.deleteOne({_id:req.params.id})
         .then(()=> {
             res.end();
             console.log('one user is deleted')})

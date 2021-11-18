@@ -25,15 +25,12 @@ module.exports={
     },
     delete: (req,res)=>{
         userModel.deleteOne({_id:req.params.id})
-        .then(()=> {
-            res.end();
-            console.log('one user is deleted')})
+        .then(()=> res.redirect('/'))
         .catch((err)=> console.log(`Error Occurd:${err}`));
     },
     update: (req,res)=>{
         userModel.updateOne({_id:req.params.id},{email:req.params.email})
         .then(()=>{
-            res.end();
             console.log('user updated')})
         .catch((err)=>console.log(`Error Occurd:${err}`))
     }

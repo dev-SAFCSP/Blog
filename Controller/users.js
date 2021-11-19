@@ -9,17 +9,21 @@ module.exports={
         })
         .catch((err)=>console.log(`Error Occurd:${err}`));
     },
+    createForm:(req,res)=>{
+        res.render('users/create');
+    },
     create: (req,res)=>{
+        //console.log(req.body);
         new userModel({ 
                 name: {
-                    firstName: "shaima",
-                    lastName: "Algamdi"
+                    firstName: req.body.fname,
+                    lastName: req.body.lname
                 },
-                DoB:new Date("2000-10-10"),
+                DoB:new Date(req.body.DoB),
                 gender: true,
-                userName: "shaima",
-                email: "shaima@test.com",
-                password: "shaimaA"
+                userName: req.body.userName,
+                email: req.body.email,
+                password: req.body.password
             
         }).save();
     },

@@ -32,10 +32,27 @@ module.exports={
         .then(()=> res.redirect('/'))
         .catch((err)=> console.log(`Error Occurd:${err}`));
     },
+    updateForm: (req,res)=>{
+        userModel.findById({_id:req.params.id}).then(user=>{
+            res.locals.user = user;
+        console.log(' user from updateForm--->' + user);
+            res.render('users/edit');
+        }) 
+    },
     update: (req,res)=>{
-        userModel.updateOne({_id:req.params.id},{email:req.params.email})
-        .then(()=>{
-            console.log('user updated')})
+        let userInfo = {
+            name: {
+                firstName: req.body.fname,
+                lastName: req.body.lname
+            },
+            DoB:new Date(req.body.DoB),
+            gender: req.body.gender,
+            email: req.body.email
+        
+        }
+        console.log(userInfo);
+        userModel.updateOne({_id:req.params.id},userInfo)
+        .then(()=>res.redirect('/'))
         .catch((err)=>console.log(`Error Occurd:${err}`))
     }
 }

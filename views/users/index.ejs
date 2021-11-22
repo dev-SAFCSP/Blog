@@ -12,12 +12,12 @@
         <% users.forEach(user=> { %>
             <tr>
             <td><%= user.name.firstName%>, <%= user.name.lastName%></td>
-            <td><%= user.DoB %></td>
+            <td><%= user.DoB.toDateString() %></td>
             <td><%= (user.gender? "Female": "Male") %></td>
             <td><%= user.email %></td>
             <td>
                 <a class="btn btn-primary" href="/delete/<%= user._id%>?_method=delete">delete</a>
-                <!-- <a class="btn btn-primary" href="/edit/<%= user.userName%>">update</a> -->
+                <a class="btn btn-primary" href="/update/<%= user._id%>">update</a>
             </td>
         </tr>
         <% })%>

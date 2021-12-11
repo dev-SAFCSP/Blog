@@ -1,4 +1,5 @@
 const userModel = require('../Model/users');
+const passport = require('passport');
 
 module.exports={
     index: (req,res)=>{
@@ -13,19 +14,24 @@ module.exports={
         res.render('users/create');
     },
     create: (req,res)=>{
-        //console.log(req.body);
-        new userModel({ 
-                name: {
-                    firstName: req.body.fname,
-                    lastName: req.body.lname
-                },
-                DoB:new Date(req.body.DoB),
-                gender: true,
-                userName: req.body.userName,
-                email: req.body.email,
-                password: req.body.password
-            
-        }).save();
+        let user = new userModel({ 
+                    name: {
+                        firstName: req.body.fname,
+                        lastName: req.body.lname
+                    },
+                    DoB:new Date(req.body.DoB),
+                    gender: true,
+                    userName: req.body.userName,
+                    email: req.body.email
+            });
+            userModel.register(user,req.body.password,
+                (error,user)=>{
+                    if(error){
+                        res.send('there was an error');
+                    }else{
+                        res.redirect('/')
+                    }
+                });
     },
     delete: (req,res)=>{
         userModel.deleteOne({_id:req.params.id})
@@ -53,6 +59,19 @@ module.exports={
         console.log(userInfo);
         userModel.updateOne({_id:req.params.id},userInfo)
         .then(()=>res.redirect('/'))
-        .catch((err)=>console.log(`Error Occurd:${err}`))
-    }
+        .catch((err)=>console.log(`Error Occurd:${err}`));
+    },
+    userInfo:(req,res)=>{
+        userModel.findById({_id:req.params.id}).then((user)=>{
+            console.log(user);
+        });
+    },
+    loginForm: (req,res)=>{
+        res.render('users/login');
+    },
+    authenticate: passport.authenticate('local',{
+        failureRedirect: '/login',
+        successRedirect: '/'
+    })
+    
 }

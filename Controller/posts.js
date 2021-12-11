@@ -40,5 +40,9 @@ module.exports={
         postModel.updateOne({_id:req.params.id},postInfo)
         .then(()=>res.redirect('/posts'))
         .catch((err)=>console.log(`Error Occurd:${err}`))
+    },
+    userPosts: (req,res)=>{
+        postModel.find({userID:req.params.userID})
+        .then((post)=>{console.log(post)});
     }
 }

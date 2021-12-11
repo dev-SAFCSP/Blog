@@ -33,6 +33,14 @@ passport.use(UserModel.createStrategy());
 passport.serializeUser(UserModel.serializeUser());
 passport.deserializeUser(UserModel.deserializeUser());
 
+app.use((req , res , next) => {
+    // res.locals.loggedIn = req.isAuthenticated();
+    // res.locals.currentUser= req.user;
+    console.log(req.user);
+    console.log(req.isAuthenticated());
+    next();
+})
+
 app.use(methodOverride('_method',{methods:['POST','GET']}))
 app.set('view engine','ejs');
 app.use(layouts);
@@ -46,6 +54,7 @@ app.get('/update/:id/', userController.updateForm);
 app.put('/update/:id', userController.update);
 app.get('/login',userController.loginForm);
 app.post('/login',userController.authenticate);
+app.get('/logout',userController.logout);
 
 
 //app.get('/info/:id',userController.userInfo); //take a user id and display his data.

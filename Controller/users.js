@@ -62,9 +62,7 @@ module.exports={
         .catch((err)=>console.log(`Error Occurd:${err}`));
     },
     userInfo:(req,res)=>{
-        userModel.findById({_id:req.params.id}).then((user)=>{
-            console.log(user);
-        });
+        res.render('users/userInfo');
     },
     loginForm: (req,res)=>{
         res.render('users/login');

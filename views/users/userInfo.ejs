@@ -1,0 +1,5 @@
+<p class="fs-4">Name: <%= currentUser.name.firstName, currentUser.name.lastName%></p>
+<p class="fs-5">Email: <%= currentUser.email%></p>
+<p class="fs-5">Date of Birth: <%= currentUser.DoB.toDateString()%></p>
+<p class="fs-5">Gender: <%= (currentUser.gender? "Female": "Male")%></p>
+<a class="btn btn-dark" href="/users/update/<%= currentUser._id%>">update</a>

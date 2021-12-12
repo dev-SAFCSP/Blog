@@ -34,10 +34,10 @@ passport.serializeUser(UserModel.serializeUser());
 passport.deserializeUser(UserModel.deserializeUser());
 
 app.use((req , res , next) => {
-    // res.locals.loggedIn = req.isAuthenticated();
-    // res.locals.currentUser= req.user;
+    res.locals.loggedIn = req.isAuthenticated();
+    res.locals.currentUser= req.user;
     console.log(req.user);
-    console.log(req.isAuthenticated());
+    // console.log(req.isAuthenticated());
     next();
 })
 
@@ -55,9 +55,7 @@ app.put('/users/update/:id', userController.update);
 app.get('/users/login',userController.loginForm);
 app.post('/users/login',userController.authenticate);
 app.get('/users/logout',userController.logout);
-
-
-//app.get('/info/:id',userController.userInfo); //take a user id and display his data.
+app.get('/userInfo',userController.userInfo); 
 
 
 // posts
@@ -69,4 +67,7 @@ app.get('/posts/update/:id/', postController.updateForm);
 app.put('/posts/update/:id', postController.update);
 app.get('/posts/find/:userID',postController.userPosts);
 
+app.get('*', function(req, res){
+    res.status(404).render('notFound');
+  });
 app.listen('3000', ()=> console.log('express listen on port 3000'))

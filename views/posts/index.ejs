@@ -3,7 +3,8 @@
         <tr>
         <th>Title</th>
         <th>Text</th>
-        <th>User</th>
+        <th>User id</th>
+        <th>Operations</th>
         </tr>
     </thead>
     <tbody>
@@ -13,8 +14,8 @@
             <td><%= post.text %></td>
             <td><%= post.userID %></td>
             <td>
-                <a class="btn btn-primary" href="/posts/delete/<%= post._id%>?_method=delete">delete</a>
-                <a class="btn btn-primary" href="/posts/update/<%= post._id%>">update</a>
+                <a class="btn btn-danger" href="/posts/delete/<%= post._id%>?_method=delete">delete</a>
+                <a class="btn btn-dark" href="/posts/update/<%= post._id%>">update</a>
             </td>
         </tr>
         <% })%>

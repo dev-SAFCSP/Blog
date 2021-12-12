@@ -46,15 +46,15 @@ app.set('view engine','ejs');
 app.use(layouts);
 
 //users
-app.get('/',userController.index);
-app.get('/create',userController.createForm);
-app.post('/create',userController.create);
-app.delete('/delete/:id',userController.delete);
-app.get('/update/:id/', userController.updateForm);
-app.put('/update/:id', userController.update);
-app.get('/login',userController.loginForm);
-app.post('/login',userController.authenticate);
-app.get('/logout',userController.logout);
+app.get('/users',userController.index);
+app.get('/users/create',userController.createForm);
+app.post('/users/create',userController.create);
+app.delete('/users/delete/:id',userController.delete);
+app.get('/users/update/:id', userController.updateForm);
+app.put('/users/update/:id', userController.update);
+app.get('/users/login',userController.loginForm);
+app.post('/users/login',userController.authenticate);
+app.get('/users/logout',userController.logout);
 
 
 //app.get('/info/:id',userController.userInfo); //take a user id and display his data.

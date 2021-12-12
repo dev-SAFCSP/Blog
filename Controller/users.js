@@ -29,13 +29,13 @@ module.exports={
                     if(error){
                         res.send('there was an error');
                     }else{
-                        res.redirect('/')
+                        res.redirect('/users')
                     }
                 });
     },
     delete: (req,res)=>{
         userModel.deleteOne({_id:req.params.id})
-        .then(()=> res.redirect('/'))
+        .then(()=> res.redirect('/users'))
         .catch((err)=> console.log(`Error Occurd:${err}`));
     },
     updateForm: (req,res)=>{
@@ -43,7 +43,7 @@ module.exports={
             res.locals.user = user;
         console.log(' user from updateForm--->' + user);
             res.render('users/edit');
-        }) 
+        }).catch((err)=>console.log(err));
     },
     update: (req,res)=>{
         let userInfo = {
@@ -58,7 +58,7 @@ module.exports={
         }
         console.log(userInfo);
         userModel.updateOne({_id:req.params.id},userInfo)
-        .then(()=>res.redirect('/'))
+        .then(()=>res.redirect('/users'))
         .catch((err)=>console.log(`Error Occurd:${err}`));
     },
     userInfo:(req,res)=>{
@@ -70,8 +70,8 @@ module.exports={
         res.render('users/login');
     },
     authenticate: passport.authenticate('local',{
-        failureRedirect: '/login',
-        successRedirect: '/'
+        failureRedirect: '/users/login',
+        successRedirect: '/users'
     }),
     logout: (req,res)=>{
         req.logout();

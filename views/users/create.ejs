@@ -1,36 +1,37 @@
-<form action="/create" method="POST">
+<form action="/users/create" method="POST">
     <div class="mb-3">
         <label for="fname">First Name</label>
-        <input name="fname" placeholder="Insert your first name" type="text"/>
+        <input name="fname" class="form-control" placeholder="Insert your first name" type="text"/>
     </div>
 
     <div class="mb-3">
         <label for="lname" class="form-label">Last Name</label>
-        <input name="lname" placeholder="Insert your last name" type="text"/>
+        <input name="lname" class="form-control" placeholder="Insert your last name" type="text"/>
     </div>
     <div class="mb-3">
         <label for="DoB">Date of Birth</label>
-        <input name="DoB" placeholder="Insert a Date" type="date"/>
+        <input name="DoB" class="form-control" placeholder="Insert a Date" type="date"/>
     </div>
-
-    <label for="gender">Gender</label>
-    <select name="gender">
-        <option value="true">Female</option>
-        <option value="false">Male</option>
-    </select>
+    <div class="mb-3">
+        <label for="gender">Gender</label>
+        <select class="form-select" name="gender">
+            <option value="true">Female</option>
+            <option value="false">Male</option>
+        </select>
+    </div>
 
     <div class="mb-3">
         <label for="email">Email</label>
-        <input name="email" placeholder="Insert an Email" type="email"/>
+        <input name="email" class="form-control" placeholder="Insert an Email" type="email"/>
     </div>
 
     <div class="mb-3">
         <label for="userName">User Name</label>
-        <input name="userName" required placeholder="Insert a user name" type="text"/>
+        <input name="userName" class="form-control" required placeholder="Insert a user name" type="text"/>
     </div>
     <div class="mb-3">
         <label for="password">Password</label>
-         <input name="password" placeholder="Insert a Password" type="password"/>
+         <input name="password" class="form-control" placeholder="Insert a Password" type="password"/>
     </div>
 
     <button type="submit" class="btn btn-primary">Create</button>

@@ -16,7 +16,7 @@ module.exports={
         new postModel({ 
                 title: req.body.title,
                 text: req.body.text,
-                userID: "6197acc20ce0306cc3339135"
+                userID: req.user._id
             
         }).save();
     },
@@ -35,7 +35,6 @@ module.exports={
         let postInfo = {
             title:req.body.title,
             text: req.body.text,
-            userID: "619419dd0499eea412a98b56",
         }
         postModel.updateOne({_id:req.params.id},postInfo)
         .then(()=>res.redirect('/posts'))

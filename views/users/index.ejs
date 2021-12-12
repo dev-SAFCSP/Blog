@@ -16,8 +16,8 @@
             <td><%= (user.gender? "Female": "Male") %></td>
             <td><%= user.email %></td>
             <td>
-                <a class="btn btn-primary" href="/delete/<%= user._id%>?_method=delete">delete</a>
-                <a class="btn btn-primary" href="/update/<%= user._id%>">update</a>
+                <a class="btn btn-danger" href="/users/delete/<%= user._id%>?_method=delete">delete</a>
+                <a class="btn btn-dark" href="/users/update/<%= user._id%>">update</a>
             </td>
         </tr>
         <% })%>

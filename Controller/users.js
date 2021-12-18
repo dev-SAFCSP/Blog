@@ -19,7 +19,7 @@ module.exports={
                         firstName: req.body.fname,
                         lastName: req.body.lname
                     },
-                    DoB:new Date(req.body.DoB),
+                    DoB:req.body.DoB,
                     gender: true,
                     userName: req.body.userName,
                     email: req.body.email
@@ -27,6 +27,7 @@ module.exports={
             userModel.register(user,req.body.password,
                 (error,user)=>{
                     if(error){
+                        console.log(error);
                         res.send('there was an error');
                     }else{
                         res.redirect('/users')

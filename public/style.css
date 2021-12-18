@@ -1,13 +1,5 @@
-/* #interface{
-    background: url(https://c4.wallpaperflare.com/wallpaper/870/97/226/rock-beach-sea-water-wallpaper-preview.jpg);
-    background-repeat: repeat-x;
-    color: white;
-    text-align: center;
-    padding: 20%;
-    margin: 0%;
-    font-size: 200px;
-} */
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap');
+
 body{
     /* background-color: #212428; */
     font-family: 'Raleway', sans-serif;
@@ -15,7 +7,6 @@ body{
 .container{
     margin-top: 10%;
 }
-
 .home-col{
     padding: 20% 0% 5% 0%;
     margin-right: -10%;

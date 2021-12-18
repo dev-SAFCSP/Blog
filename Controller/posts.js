@@ -42,6 +42,10 @@ module.exports={
     },
     userPosts: (req,res)=>{
         postModel.find({userID:req.params.userID})
-        .then((post)=>{console.log(post)});
+        .then((posts)=>{
+            console.log(posts);
+            res.locals.posts = posts;
+            res.render('users/posts')
+        });
     }
 }

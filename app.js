@@ -17,6 +17,8 @@ mongoose.connect('mongodb://localhost:27017/blog',{
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
+app.use(express.static('public'));
+
 
 // cookies and session setup
 app.use(cookieParser('test'));
@@ -45,6 +47,8 @@ app.use(methodOverride('_method',{methods:['POST','GET']}))
 app.set('view engine','ejs');
 app.use(layouts);
 
+//home page
+app.get('/',(req,res)=>res.render('home'));
 //users
 app.get('/users',userController.index);
 app.get('/users/create',userController.createForm);
@@ -65,7 +69,7 @@ app.post('/posts/create',postController.create);
 app.delete('/posts/delete/:id',postController.delete);
 app.get('/posts/update/:id/', postController.updateForm);
 app.put('/posts/update/:id', postController.update);
-app.get('/posts/find/:userID',postController.userPosts);
+app.get('/posts/:userID',postController.userPosts);
 
 app.get('*', function(req, res){
     res.status(404).render('notFound');

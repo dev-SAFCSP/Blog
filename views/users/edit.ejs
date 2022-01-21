@@ -11,9 +11,9 @@
 
     <div class="mb-3">
         <label for="DoB">Date of Birth</label>
-        <input name="DoB" class="form-control" placeholder="Insert a Date" type="date" value="<%=user.DoB%>"/>
+        <input name="DoB" class="form-control" placeholder="Insert a Date" type="date" value="<%=user.DoB.toISOString().slice(0, 10)%>"/>
     </div>
-
+    
     <div class="mb-3">
     <label for="gender">Gender</label>
         <select class="form-select" name="gender">

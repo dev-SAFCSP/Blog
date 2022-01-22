@@ -18,7 +18,13 @@ module.exports={
                 text: req.body.text,
                 userID: req.user._id
             
-        }).save();
+        }).save((err,result)=>{
+            if(err){
+                console.log(err);
+            }else{
+                res.redirect('/');
+            }
+        });
     },
     delete: (req,res)=>{
         postModel.deleteOne({_id:req.params.id})

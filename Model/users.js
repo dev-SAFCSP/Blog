@@ -13,7 +13,8 @@ user = new mongoose.Schema({
         required: true
     },
     gender: Boolean,
-    email: String
+    email: String,
+    isAdmin: Boolean
 });
 
 user.plugin(passportLocalMongoose, {

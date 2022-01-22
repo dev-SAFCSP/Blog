@@ -22,7 +22,8 @@ module.exports={
                     DoB:req.body.DoB,
                     gender: true,
                     userName: req.body.userName,
-                    email: req.body.email
+                    email: req.body.email,
+                    isAdmin: false
             });
             userModel.register(user,req.body.password,
                 (error,user)=>{

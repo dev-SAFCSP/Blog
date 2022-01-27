@@ -1,13 +1,19 @@
 const postModel = require('../Model/posts');
 
 module.exports={
-    index: (req,res)=>{
+    index: (req,res,next)=>{
         postModel.find({})
         .then((data)=>{
             res.locals.posts = data;
-            res.render('posts/index');
+            next();
         })
         .catch((err)=>console.log(`Error Occurd:${err}`));
+    },
+    indexView:(req,res)=>{
+        res.render('posts/index');
+    },
+    postsView:(req,res)=>{
+        res.render('posts/show');
     },
     createForm:(req,res)=>{
         res.render('posts/create');

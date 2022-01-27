@@ -63,7 +63,8 @@ app.get('/userInfo',userController.userInfo);
 
 
 // posts
-app.get('/posts',postController.index);
+app.get('/posts',postController.index,postController.indexView);
+app.get('/posts/show',postController.index,postController.postsView);
 app.get('/posts/create',postController.createForm);
 app.post('/posts/create',postController.create);
 app.delete('/posts/delete/:id',postController.delete);

@@ -70,7 +70,7 @@ app.post('/posts/create',postController.create);
 app.delete('/posts/delete/:id',postController.delete);
 app.get('/posts/update/:id/', postController.updateForm);
 app.put('/posts/update/:id', postController.update);
-app.get('/posts/:userID',postController.userPosts);
+app.get('/posts/user',postController.userPosts);
 
 app.get('*', function(req, res){
     res.status(404).render('notFound');

@@ -53,7 +53,7 @@ module.exports={
         .catch((err)=>console.log(`Error Occurd:${err}`))
     },
     userPosts: (req,res)=>{
-        postModel.find({userID:req.params.userID})
+        postModel.find({userID:req.user._id})
         .then((posts)=>{
             console.log(posts);
             res.locals.posts = posts;

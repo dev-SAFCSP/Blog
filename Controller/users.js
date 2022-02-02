@@ -1,5 +1,6 @@
 const userModel = require('../Model/users');
 const passport = require('passport');
+const e = require('express');
 
 module.exports={
     index: (req,res)=>{
@@ -76,6 +77,17 @@ module.exports={
     logout: (req,res)=>{
         req.logout();
         res.redirect('/');
+    },
+    isAdmin:(req,res,next)=>{
+        if(req.isAuthenticated()){
+            if(req.user.isAdmin){
+                next();
+            }else{
+                res.redirect('/error');
+            }
+        }else{
+            res.redirect('/users/login');
+        }
     }
     
 }

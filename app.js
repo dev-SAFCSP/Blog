@@ -50,12 +50,12 @@ app.use(layouts);
 //home page
 app.get('/',(req,res)=>res.render('home'));
 //users
-app.get('/users',userController.index);
+app.get('/users',userController.isAdmin,userController.index);
 app.get('/users/create',userController.createForm);
 app.post('/users/create',userController.create);
-app.delete('/users/delete/:id',userController.delete);
-app.get('/users/update/:id', userController.updateForm);
-app.put('/users/update/:id', userController.update);
+app.delete('/users/delete/:id',userController.isAdmin,userController.delete);
+app.get('/users/update/:id',userController.isAdmin, userController.updateForm);
+app.put('/users/update/:id',userController.isAdmin, userController.update);
 app.get('/users/login',userController.loginForm);
 app.post('/users/login',userController.authenticate);
 app.get('/users/logout',userController.logout);

@@ -61,7 +61,7 @@ module.exports={
         }
         console.log(userInfo);
         userModel.updateOne({_id:req.params.id},userInfo)
-        .then(()=>res.redirect('/users'))
+        .then(()=>res.redirect('/'))
         .catch((err)=>console.log(`Error Occurd:${err}`));
     },
     userInfo:(req,res)=>{
@@ -72,22 +72,33 @@ module.exports={
     },
     authenticate: passport.authenticate('local',{
         failureRedirect: '/users/login',
-        successRedirect: '/users'
+        successRedirect: '/'
     }),
     logout: (req,res)=>{
         req.logout();
         res.redirect('/');
     },
-    isAdmin:(req,res,next)=>{
+    isAuthenticated:(req,res,next)=>{
         if(req.isAuthenticated()){
-            if(req.user.isAdmin){
                 next();
-            }else{
-                res.redirect('/error');
-            }
         }else{
             res.redirect('/users/login');
         }
-    }
+    },
+    isAdmin:(req,res,next)=>{
+        if(req.user.isAdmin){
+            next();
+        }else{
+            res.redirect('/error');
+        }
+    },
+    isAllowed:(req,res,next)=>{
+        console.log(req.user._id == req.params.id || req.user.isAdmin);
+        if(req.user._id == req.params.id){
+            next();
+        }else{
+            res.redirect('/error');
+        }
+    },
     
 }

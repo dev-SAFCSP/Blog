@@ -41,7 +41,7 @@ app.use((req , res , next) => {
     console.log(req.user);
     // console.log(req.isAuthenticated());
     next();
-})
+});
 
 app.use(methodOverride('_method',{methods:['POST','GET']}))
 app.set('view engine','ejs');
@@ -50,17 +50,19 @@ app.use(layouts);
 //home page
 app.get('/',(req,res)=>res.render('home'));
 //users
-app.get('/users',userController.isAdmin,userController.index);
+app.get('/users',userController.isAuthenticated,userController.isAdmin,userController.index);
 app.get('/users/create',userController.createForm);
 app.post('/users/create',userController.create);
-app.delete('/users/delete/:id',userController.isAdmin,userController.delete);
-app.get('/users/update/:id',userController.isAdmin, userController.updateForm);
-app.put('/users/update/:id',userController.isAdmin, userController.update);
+app.delete('/users/delete/:id',userController.isAuthenticated,userController.isAdmin,userController.delete);
+app.get('/users/update/:id',userController.isAuthenticated,userController.isAllowed, userController.updateForm);
+app.put('/users/update/:id',userController.isAuthenticated,userController.isAllowed, userController.update);
 app.get('/users/login',userController.loginForm);
 app.post('/users/login',userController.authenticate);
 app.get('/users/logout',userController.logout);
-app.get('/userInfo',userController.userInfo); 
+app.get('/userInfo',userController.isAuthenticated,userController.userInfo); 
 
+//now only admin can show and delete users while users can edit their own info.
+//i need to restrict the access of posts crud.
 
 // posts
 app.get('/posts',postController.index,postController.indexView);
@@ -68,7 +70,7 @@ app.get('/posts/show',postController.index,postController.postsView);
 app.get('/posts/create',postController.createForm);
 app.post('/posts/create',postController.create);
 app.delete('/posts/delete/:id',postController.delete);
-app.get('/posts/update/:id/', postController.updateForm);
+app.get('/posts/update/:id', postController.updateForm);
 app.put('/posts/update/:id', postController.update);
 app.get('/posts/user',postController.userPosts);
 

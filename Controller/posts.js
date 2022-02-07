@@ -12,9 +12,6 @@ module.exports={
     indexView:(req,res)=>{
         res.render('posts/index');
     },
-    postsView:(req,res)=>{
-        res.render('posts/show');
-    },
     createForm:(req,res)=>{
         res.render('posts/create');
     },
@@ -52,12 +49,15 @@ module.exports={
         .then(()=>res.redirect('/posts'))
         .catch((err)=>console.log(`Error Occurd:${err}`))
     },
-    userPosts: (req,res)=>{
-        postModel.find({userID:req.user._id})
-        .then((posts)=>{
-            console.log(posts);
-            res.locals.posts = posts;
-            res.render('users/posts')
+    postsInfoWithUsersInfo: (req,res)=>{
+        postModel.find({})
+        .populate('userID').exec((err, data)=>{
+            if(data){
+                res.locals.posts = data;
+                res.render('posts/show');
+            }else{
+                console.log(err);
+            }
         });
     }
 }

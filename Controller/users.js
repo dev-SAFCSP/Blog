@@ -21,7 +21,7 @@ module.exports={
                         lastName: req.body.lname
                     },
                     DoB:req.body.DoB,
-                    gender: true,
+                    gender: req.body.gender,
                     userName: req.body.userName,
                     email: req.body.email,
                     isAdmin: false
